@@ -10,6 +10,10 @@ import { Course } from '../model/course';
 export class Card1Component {
 	@Input() 
 	course: Course;
+	@Input({required:true}) 
+	index: number;
+	@Input({required:true}) 
+	total: number;
 	
 	@Output("courseSelected")
 	// type of event argument in brackets

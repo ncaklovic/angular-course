@@ -7,8 +7,29 @@
 
 <div class="courses">
 
-	@for (c of courses; track c.id){
-	<card1 (courseSelected)="OnCourseSelected($event)" [course]="c"/>
+	@for (c of courses; track c.id;)
+	{
+	<!--
+		for loop built in variables:
+		$index, $count are integers (index is 0 based)
+		$first, $last, $even, $odd are bool variables
+		[class.is-first] adds class is-first => use "card1.is-first" from styles.css
+	-->
+	<card1 
+	[course] = "c" 
+	[index] = "$index + 1"
+	[total] = "$count"
+
+	[class.is-first] = "$first"  
+	[class.is-last] = "$last"  
+	[class.is-even] = "$even"  
+	[class.is-odd] = "$odd"  
+	
+	(courseSelected) = "OnCourseSelected($event)" 
+	/>
+	}
+	@empty{
+	<h3>nothing to see here</h3>
 	}
 
 </div>
