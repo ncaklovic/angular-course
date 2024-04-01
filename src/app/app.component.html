@@ -5,9 +5,22 @@
 
 </div>
 
+<div class="demo">
+	<div>Start Date: {{ start | date: "dd.MM.YYYY." }}</div>
+	<div>Title: {{ title | uppercase }}</div>
+	<div>Price as value: {{ price | number: "3.3-5" }}</div>
+	<div>Price as currency: {{ price | currency: "EUR" }}</div>
+	<div>Rate: {{ rate | percent }}</div>
+</div>
+
 <div class="courses">
 
-	@for (c of courses; track c.id;)
+	<!--	 
+		use slice to show only first 5 elements of array
+		courses | json would return JSON of object
+		course | keyvalue would return key/value pairs of object
+	-->
+	@for (c of courses | slice: 0:5; track c.id;)
 	{
 	<!--
 		for loop built in variables:
@@ -15,18 +28,14 @@
 		$first, $last, $even, $odd are bool variables
 		[class.is-first] adds class is-first => use "card1.is-first" from styles.css
 	-->
-	<card1 
-	[course] = "c" 
-	[index] = "$index + 1"
-	[total] = "$count"
-
-	[class.is-first] = "$first"  
-	[class.is-last] = "$last"  
-	[class.is-even] = "$even"  
-	[class.is-odd] = "$odd"  
-	
-	(courseSelected) = "OnCourseSelected($event)" 
-	/>
+	<card1 [course]="c"
+				 [index]="$index + 1"
+				 [total]="$count"
+				 [class.is-first]="$first"
+				 [class.is-last]="$last"
+				 [class.is-even]="$even"
+				 [class.is-odd]="$odd"
+				 (courseSelected)="OnCourseSelected($event)" />
 	}
 	@empty{
 	<h3>nothing to see here</h3>
