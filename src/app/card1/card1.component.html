@@ -5,16 +5,27 @@
 	</div>
 
 	@if (course.iconUrl) {
-		<img width="300" alt="Angular Logo" [src]="course.iconUrl">
+	<img width="300" alt="Angular Logo" [src]="course.iconUrl">
 	}
 	@else {
-		<img width="300" alt="Angular Logo" src="assets/empty-image.png">
+	<img width="300" alt="Angular Logo" src="assets/empty-image.png">
 	}
 	<!-- alternative with ternary operator
 		<img [src]="course.iconUrl ? course.iconUrl : 'assets/empty-image.png'">
 	-->
 	<div class="course-description">
 		{{ course.longDescription }}
+	</div>
+
+	<div class="course-category">
+    <div class="category">
+      @switch (course.category) {
+				@case ("BEGINNER")     { Beginner }
+				@case ("ADVANCED")     { Proffesional }
+				@case ("INTERMEDIATE") { Intermediate }
+				@default               { Unknown }
+      }
+    </div>
 	</div>
 
 	<button (click)="OnClickViewCourse()">
