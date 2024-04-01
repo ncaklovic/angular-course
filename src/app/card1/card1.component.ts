@@ -23,4 +23,17 @@ export class Card1Component {
 		console.log("clicked!");
 		this.emitter.emit(this.course);
 	}
+	
+	cardClasses(){
+		if (this.course.category == 'BEGINNER')	{
+			return 'beginner';
+		}
+  }
+
+  titleStyles() {
+    return {
+      'text-decoration': 'underline',
+      'background-color': this.course.category == 'BEGINNER' ? 'lightblue' : 'lightgreen'
+    };
+  }
 }
